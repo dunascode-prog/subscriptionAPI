@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema(
       required: [true, "user name is required"],
       trim: true,
       minLength: 2,
-      maxLength: 10,
+      maxLength: 25,
     },
     email: {
       type: String,
@@ -27,6 +27,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("SubcriptionUser", userSchema);
 
 export default User;
