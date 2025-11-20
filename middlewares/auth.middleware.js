@@ -3,7 +3,7 @@ import { JWT_SECRET } from "../config/env.js";
 import User from "../models/user.models.js";
 
 //validates token, give errors of unauthorized, if token is verified then the users id can be gotten then
-export const authorize = async (req, res, next) => {
+const authorize = async (req, res, next) => {
   try {
     let token;
 
@@ -22,7 +22,13 @@ export const authorize = async (req, res, next) => {
       return res.status(401).json({ message: "Unauthorized" });
     }
     req.user = user;
+    print(req.user);
+    next();
   } catch (error) {
-    res.status(401).json({ message: "Unauthorized", error: error.message });
+    res
+      .status(401)
+      .json({ message: "Unauthorized Login Again", error: error.message });
   }
 };
+
+export default authorize;
